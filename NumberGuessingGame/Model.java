@@ -2,12 +2,13 @@ package numberGuessingGame;
 
 public class Model {
 	private int randomNum;
-	private int totalTurns;
+	private int totalTurns;	
 	private int turnsLeft;
 	private int roundsLeft;
 	private int score;
 	private int limit;
-	
+	private int multiplier;
+	private int penalty;
 	
 	Model() {
 		rndGenerator(10);
@@ -15,6 +16,8 @@ public class Model {
 		turnsLeft = 10;
 		roundsLeft = 1;
 		score = 0;
+		multiplier = 1;
+		penalty = 0;
 	}
 	
 	void setRounds(View view,int r) {
@@ -32,17 +35,16 @@ public class Model {
 		return this.score;
 	}
 	
+	void changeMult(int m) {
+		this.multiplier = m;
+	}
+	
+	void changePenalty(int p) {
+		this.penalty = p;
+	}
+	
 	int calculateScore() {
-		int diff = this.totalTurns - this.turnsLeft;
-		if(diff == 1)
-			this.score += 50;
-		else if(diff > 1 && diff <= (limit/2))
-			this.score += 25;
-		else if(diff > (limit/2) + 1)
-			this.score += 10;
-		else
-			this.score += 5;
-		
+		this.score = (100 - ((this.totalTurns-this.turnsLeft) * 10)) * this.multiplier - this.penalty;
 		return this.score;
 	}
 	
@@ -70,20 +72,39 @@ public class Model {
 			{
 				this.roundsLeft--;
 				this.turnsLeft = this.totalTurns;
-				calculateScore();
 				view.setRoundLabel(this.roundsLeft);
-				if(this.roundsLeft != 0)	view.setTurnLabel(this.turnsLeft);
-				view.displayAnswer("Answer is:"+this.randomNum);
+				if(this.roundsLeft != 0)	
+				{	
+					calculateScore();
+					view.setTurnLabel(this.turnsLeft);
+					view.displayAnswer("Answer is: "+this.randomNum+", now next round!");
+				}
+				else
+				{
+					view.displayAnswer("Answer is: "+this.randomNum);
+				}
+				this.penalty = 0;
+				view.displayPenalty(penalty);
 				rndGenerator(this.limit);
 			}
 			else if(input == this.randomNum)
 			{
 				this.roundsLeft--;
 				this.turnsLeft = this.totalTurns;
-				calculateScore();
 				view.setRoundLabel(this.roundsLeft);
-				view.setTurnLabel(this.turnsLeft);
+				calculateScore();
+				if(this.roundsLeft != 0)	
+				{	
+					view.setTurnLabel(this.turnsLeft);
+				}
+				else
+				{
+					view.setTurnLabel(0);
+				}
+				this.penalty = 0;
+				view.displayPenalty(penalty);
 				view.displayAnswer("Correct!");
+				view.displayHint("");
 				rndGenerator(this.limit);
 			}
 			else if(input > this.randomNum)
@@ -92,7 +113,8 @@ public class Model {
 				calculateScore();
 				view.setRoundLabel(this.roundsLeft);
 				view.setTurnLabel(this.turnsLeft);
-				view.displayAnswer(input + " is greater than the answer");
+				view.displayAnswer("Wrong guess");
+				view.displayHint(input + " is greater than the answer");
 			}
 			else if(input < this.randomNum)
 			{
@@ -100,14 +122,15 @@ public class Model {
 				calculateScore();
 				view.setRoundLabel(this.roundsLeft);
 				view.setTurnLabel(this.turnsLeft);
-				view.displayAnswer(input + " is lesser than the answer");
+				view.displayAnswer("Wrong guess");
+				view.displayHint(input + " is lesser than the answer");
 			}
 		}
 		else
 		{
 			view.setRoundLabel(this.roundsLeft);
-			view.setTurnLabel(this.turnsLeft);
-			view.displayAnswer("");
+			if(this.roundsLeft != 0)
+				view.setTurnLabel(this.turnsLeft);
 		}
 	}
 }
