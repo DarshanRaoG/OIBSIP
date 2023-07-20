@@ -125,36 +125,36 @@ public class View {
 		menu2.setPreferredSize(new Dimension(90,40));
 		menu3.setPreferredSize(new Dimension(90,40));
 		
-        menu.setPreferredSize(new Dimension(75,25));
+       		menu.setPreferredSize(new Dimension(75,25));
 		menu.setOpaque(true);
 		
-        amateur.setPreferredSize(new Dimension(235,30));
-        novice.setPreferredSize(new Dimension(235,30));
-        expert.setPreferredSize(new Dimension(235,30));
-        master.setPreferredSize(new Dimension(235,30));
-        telepath.setPreferredSize(new Dimension(235,30));
-        
-        amateur.setFont(new Font("Arial",Font.BOLD,15));
-        novice.setFont(new Font("Arial",Font.BOLD,15));
-        expert.setFont(new Font("Arial",Font.BOLD,15));
-        master.setFont(new Font("Arial",Font.BOLD,15));
-        telepath.setFont(new Font("Arial",Font.BOLD,15));
-        
-        range1.setPreferredSize(new Dimension(100,30));
-        range2.setPreferredSize(new Dimension(100,30));
-        range3.setPreferredSize(new Dimension(100,30));
-        
-        range1.setFont(new Font("Arial",Font.BOLD,15));
-        range2.setFont(new Font("Arial",Font.BOLD,15));
-        range3.setFont(new Font("Arial",Font.BOLD,15));
-        
-        round1.setPreferredSize(new Dimension(100,30));
-        round3.setPreferredSize(new Dimension(100,30));
-        round5.setPreferredSize(new Dimension(100,30));
-        
-        round1.setFont(new Font("Arial",Font.BOLD,15));
-        round3.setFont(new Font("Arial",Font.BOLD,15));
-        round5.setFont(new Font("Arial",Font.BOLD,15));
+	        amateur.setPreferredSize(new Dimension(235,30));
+	        novice.setPreferredSize(new Dimension(235,30));
+	        expert.setPreferredSize(new Dimension(235,30));
+	        master.setPreferredSize(new Dimension(235,30));
+	        telepath.setPreferredSize(new Dimension(235,30));
+	        
+	        amateur.setFont(new Font("Arial",Font.BOLD,15));
+	        novice.setFont(new Font("Arial",Font.BOLD,15));
+	        expert.setFont(new Font("Arial",Font.BOLD,15));
+	        master.setFont(new Font("Arial",Font.BOLD,15));
+	        telepath.setFont(new Font("Arial",Font.BOLD,15));
+	        
+	        range1.setPreferredSize(new Dimension(100,30));
+	        range2.setPreferredSize(new Dimension(100,30));
+	        range3.setPreferredSize(new Dimension(100,30));
+	        
+	        range1.setFont(new Font("Arial",Font.BOLD,15));
+	        range2.setFont(new Font("Arial",Font.BOLD,15));
+	        range3.setFont(new Font("Arial",Font.BOLD,15));
+	        
+	        round1.setPreferredSize(new Dimension(100,30));
+	        round3.setPreferredSize(new Dimension(100,30));
+	        round5.setPreferredSize(new Dimension(100,30));
+	        
+	        round1.setFont(new Font("Arial",Font.BOLD,15));
+	        round3.setFont(new Font("Arial",Font.BOLD,15));
+	        round5.setFont(new Font("Arial",Font.BOLD,15));
         
 		//The Game
 		panel1 = new JPanel(new BorderLayout());
@@ -203,7 +203,7 @@ public class View {
 		
 		inputField = new JTextArea(0,5);
 		inputField.setLineWrap(true);
-        inputField.setWrapStyleWord(true);
+        	inputField.setWrapStyleWord(true);
 
 		scoreLabel = new JLabel("Score: 0");
 		scoreLabel.setFont(new Font("Arial",Font.BOLD,25));
@@ -258,20 +258,20 @@ public class View {
 		//Rest of the code
 		
 		CardLayout cardLayout = new CardLayout();
-        JPanel cardPanel = new JPanel(cardLayout);
-        
-        cardPanel.add(panel1);
-        cardPanel.add(panelX);
-        
-        startButton.addActionListener(new ActionListener() {
+	        JPanel cardPanel = new JPanel(cardLayout);
+	        
+	        cardPanel.add(panel1);
+	        cardPanel.add(panelX);
+	        
+	        startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.next(cardPanel);
-                frame.setJMenuBar(null);
-                frame.remove(panel0);
+				frame.setJMenuBar(null);
+				frame.remove(panel0);
 			}
 		});
-		
-        quitGame.addActionListener(new ActionListener() {
+			
+	        quitGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.next(cardPanel);
 				frame.setJMenuBar(menuBar);
@@ -280,7 +280,7 @@ public class View {
 		});
         
         
-        frame.setLayout(new BorderLayout());
+        	frame.setLayout(new BorderLayout());
 		frame.add(panel0,BorderLayout.NORTH);
 		frame.add(cardPanel,BorderLayout.CENTER);
 		
