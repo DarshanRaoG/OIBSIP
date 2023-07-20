@@ -14,13 +14,15 @@ import javax.swing.border.EmptyBorder;
 
 public class View {
 	private JFrame frame;
-	private JPanel panel0,panel1,panel2,panel3,panel4,panel5,panelX;
-	private JLabel label1,label2,label3,label4,scoreLabel,roundLabel,turnLabel;
+	private JPanel panel0,panel1,panel2,panel3,panel4,panel5,panelX,panelY,ansPanel,inPanel;
+	private JLabel label1,label2,label3,ansLabel,scoreLabel,roundLabel,turnLabel,multiLabel,penaltyLabel;
 	private JRadioButtonMenuItem amateur,novice,expert,master,telepath;
 	private JRadioButtonMenuItem range1,range2,range3;
 	private JRadioButtonMenuItem round1,round3,round5;
 	private JTextArea inputField;
-	private JButton startButton,submitButton,quitGame;
+	private JButton startButton,submitButton,hintButton,quitGame;
+	
+	public JLabel label4;
 	
 	View() {
 		frame = new JFrame("Guess the number");
@@ -44,7 +46,7 @@ public class View {
 		JMenu menu1 = new JMenu("Difficulty");
 		menu1.setFont(new Font("Arial",Font.BOLD,15));
 		
-		amateur = new JRadioButtonMenuItem("Amateur (Unlimited Guesses)");
+		amateur = new JRadioButtonMenuItem("Amateur (10000 Guesses)");
 		novice = new JRadioButtonMenuItem("Novice (20 Guesses)");
 		expert = new JRadioButtonMenuItem("Expert (10 Guesses)");
 		master = new JRadioButtonMenuItem("Master (5 Guesses)");
@@ -125,36 +127,36 @@ public class View {
 		menu2.setPreferredSize(new Dimension(90,40));
 		menu3.setPreferredSize(new Dimension(90,40));
 		
-       		menu.setPreferredSize(new Dimension(75,25));
+        menu.setPreferredSize(new Dimension(75,25));
 		menu.setOpaque(true);
 		
-	        amateur.setPreferredSize(new Dimension(235,30));
-	        novice.setPreferredSize(new Dimension(235,30));
-	        expert.setPreferredSize(new Dimension(235,30));
-	        master.setPreferredSize(new Dimension(235,30));
-	        telepath.setPreferredSize(new Dimension(235,30));
-	        
-	        amateur.setFont(new Font("Arial",Font.BOLD,15));
-	        novice.setFont(new Font("Arial",Font.BOLD,15));
-	        expert.setFont(new Font("Arial",Font.BOLD,15));
-	        master.setFont(new Font("Arial",Font.BOLD,15));
-	        telepath.setFont(new Font("Arial",Font.BOLD,15));
-	        
-	        range1.setPreferredSize(new Dimension(100,30));
-	        range2.setPreferredSize(new Dimension(100,30));
-	        range3.setPreferredSize(new Dimension(100,30));
-	        
-	        range1.setFont(new Font("Arial",Font.BOLD,15));
-	        range2.setFont(new Font("Arial",Font.BOLD,15));
-	        range3.setFont(new Font("Arial",Font.BOLD,15));
-	        
-	        round1.setPreferredSize(new Dimension(100,30));
-	        round3.setPreferredSize(new Dimension(100,30));
-	        round5.setPreferredSize(new Dimension(100,30));
-	        
-	        round1.setFont(new Font("Arial",Font.BOLD,15));
-	        round3.setFont(new Font("Arial",Font.BOLD,15));
-	        round5.setFont(new Font("Arial",Font.BOLD,15));
+        amateur.setPreferredSize(new Dimension(235,30));
+        novice.setPreferredSize(new Dimension(235,30));
+        expert.setPreferredSize(new Dimension(235,30));
+        master.setPreferredSize(new Dimension(235,30));
+        telepath.setPreferredSize(new Dimension(235,30));
+        
+        amateur.setFont(new Font("Arial",Font.BOLD,15));
+        novice.setFont(new Font("Arial",Font.BOLD,15));
+        expert.setFont(new Font("Arial",Font.BOLD,15));
+        master.setFont(new Font("Arial",Font.BOLD,15));
+        telepath.setFont(new Font("Arial",Font.BOLD,15));
+        
+        range1.setPreferredSize(new Dimension(100,30));
+        range2.setPreferredSize(new Dimension(100,30));
+        range3.setPreferredSize(new Dimension(100,30));
+        
+        range1.setFont(new Font("Arial",Font.BOLD,15));
+        range2.setFont(new Font("Arial",Font.BOLD,15));
+        range3.setFont(new Font("Arial",Font.BOLD,15));
+        
+        round1.setPreferredSize(new Dimension(100,30));
+        round3.setPreferredSize(new Dimension(100,30));
+        round5.setPreferredSize(new Dimension(100,30));
+        
+        round1.setFont(new Font("Arial",Font.BOLD,15));
+        round3.setFont(new Font("Arial",Font.BOLD,15));
+        round5.setFont(new Font("Arial",Font.BOLD,15));
         
 		//The Game
 		panel1 = new JPanel(new BorderLayout());
@@ -170,6 +172,9 @@ public class View {
 		submitButton = new JButton("Guess");
 		submitButton.setFont(new Font("Arial",Font.BOLD,20));
 		submitButton.setPreferredSize(new Dimension(140, 50));
+		hintButton = new JButton("Hint");
+		hintButton.setPreferredSize(new Dimension(100, 40));
+		hintButton.setFont(new Font("Arial",Font.BOLD,20));
 		quitGame = new JButton("New Game");
 		quitGame.setFont(new Font("Arial",Font.BOLD,20));
 		quitGame.setPreferredSize(new Dimension(140, 50));
@@ -203,7 +208,7 @@ public class View {
 		
 		inputField = new JTextArea(0,5);
 		inputField.setLineWrap(true);
-        	inputField.setWrapStyleWord(true);
+        inputField.setWrapStyleWord(true);
 
 		scoreLabel = new JLabel("Score: 0");
 		scoreLabel.setFont(new Font("Arial",Font.BOLD,25));
@@ -213,10 +218,21 @@ public class View {
 		label4.setBorder(new EmptyBorder(0,280,0,0));
 		label4.setFont(new Font("Arial",Font.BOLD,25));
 		
-		panel3 = new JPanel();
+		panel3 = new JPanel(new BorderLayout());
+		inPanel = new JPanel();
 		inputField.setFont(new Font("Arial",Font.BOLD,20));
 		inputField.setBorder(new EmptyBorder(5,70,5,0));
-		panel3.add(inputField);
+		inPanel.add(inputField);
+		inPanel.setBackground(Color.green);
+		panel3.add(inPanel,BorderLayout.CENTER);
+		
+		ansPanel = new JPanel();
+		ansLabel = new JLabel("Can you guess it right?");
+		ansLabel.setFont(new Font("Arial",Font.BOLD,25));
+		ansPanel.add(ansLabel);
+		ansPanel.setBackground(Color.green);
+		
+		panel3.add(ansPanel,BorderLayout.NORTH);
 		panel3.setBackground(Color.green);
 		
 		panel4 = new JPanel();
@@ -229,24 +245,54 @@ public class View {
 		panel5.add(quitGame);
 		
 		roundLabel = new JLabel("Rounds left: 1");
-		roundLabel.setFont(new Font("Arial",Font.BOLD,25));
+		roundLabel.setFont(new Font("Arial",Font.BOLD,20));
 		turnLabel = new JLabel("Guesses left: 10");
-		turnLabel.setFont(new Font("Arial",Font.BOLD,25));
+		turnLabel.setFont(new Font("Arial",Font.BOLD,20));
+		multiLabel = new JLabel("Multiplier: 3x");
+		multiLabel.setFont(new Font("Arial",Font.BOLD,20));
+		penaltyLabel = new JLabel("Penalty: 0");
+		penaltyLabel.setFont(new Font("Arial",Font.BOLD,20));
 		
-		JLabel seperatingLabel = new JLabel(",");
-		seperatingLabel.setFont(new Font("Arial",Font.BOLD,25));
+		JLabel seperatingLabel0 = new JLabel("||");
+		seperatingLabel0.setFont(new Font("Arial",Font.BOLD,22));
+		JLabel seperatingLabel1 = new JLabel("||");
+		seperatingLabel1.setFont(new Font("Arial",Font.BOLD,22));
+		JLabel seperatingLabel2 = new JLabel("||");
+		seperatingLabel2.setFont(new Font("Arial",Font.BOLD,22));
+		JLabel seperatingLabel3 = new JLabel("||");
+		seperatingLabel3.setFont(new Font("Arial",Font.BOLD,22));
+		JLabel seperatingLabel4 = new JLabel("||");
+		seperatingLabel4.setFont(new Font("Arial",Font.BOLD,22));
+		
+		panel5.add(seperatingLabel0);
 		panel5.add(roundLabel);
-		panel5.add(seperatingLabel);
+		panel5.add(seperatingLabel1);
 		panel5.add(turnLabel);
+		panel5.add(seperatingLabel2);
+		panel5.add(multiLabel);
+		panel5.add(seperatingLabel3);
+		panel5.add(penaltyLabel);
+		panel5.add(seperatingLabel4);
+		
 		
 		panelX = new JPanel(new BorderLayout());
 		panelX.add(panel5,BorderLayout.NORTH);
 		
+		panelY = new JPanel(new GridLayout(0,1));
+		
+		JPanel panelYY = new JPanel();
+		hintButton.setPreferredSize(new Dimension(140, 50));
+		
+		panelYY.add(hintButton);
+		panelYY.setBackground(Color.green);
+		panelY.add(panelYY);
+		panelY.add(label4);
+		panelY.setBackground(Color.green);
 		panel2.add(scoreLabel);
 		panel2.add(label3);
 		panel2.add(panel3);
 		panel2.add(panel4);
-		panel2.add(label4);
+		panel2.add(panelY);
 		
 		panelX.add(panel2,BorderLayout.CENTER);
 		
@@ -258,20 +304,20 @@ public class View {
 		//Rest of the code
 		
 		CardLayout cardLayout = new CardLayout();
-	        JPanel cardPanel = new JPanel(cardLayout);
-	        
-	        cardPanel.add(panel1);
-	        cardPanel.add(panelX);
-	        
-	        startButton.addActionListener(new ActionListener() {
+        JPanel cardPanel = new JPanel(cardLayout);
+        
+        cardPanel.add(panel1);
+        cardPanel.add(panelX);
+        
+        startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.next(cardPanel);
-				frame.setJMenuBar(null);
-				frame.remove(panel0);
+                frame.setJMenuBar(null);
+                frame.remove(panel0);
 			}
 		});
-			
-	        quitGame.addActionListener(new ActionListener() {
+		
+        quitGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.next(cardPanel);
 				frame.setJMenuBar(menuBar);
@@ -280,7 +326,7 @@ public class View {
 		});
         
         
-        	frame.setLayout(new BorderLayout());
+        frame.setLayout(new BorderLayout());
 		frame.add(panel0,BorderLayout.NORTH);
 		frame.add(cardPanel,BorderLayout.CENTER);
 		
@@ -329,6 +375,10 @@ public class View {
 		startButton.addActionListener(sListener);
 	}
 	
+	public void addHintButtonListener(ActionListener hListener) {
+		hintButton.addActionListener(hListener);
+	}
+	
 	public void addQuitGameListener(ActionListener qListener) {
 		quitGame.addActionListener(qListener);
 	}
@@ -342,10 +392,7 @@ public class View {
 	}
 	
 	public void setTurnLabel(int tn) {
-		if(tn == 10000)
-			this.turnLabel.setText("Guesses left: Infinite");
-		else
-			this.turnLabel.setText("Guesses left: "+tn);
+		this.turnLabel.setText("Guesses left: "+tn);
 	}
 	
 	public int getInputNumber() {
@@ -365,11 +412,28 @@ public class View {
 		}
 	}
 	
+	public void displayMulti(int multi) {
+		multiLabel.setText("Multiplier: "+multi+"x");
+	}
+	
+	public void displayPenalty(int pen) {
+		penaltyLabel.setText("Penalty: "+pen);
+	}
+	
 	public void displayAnswer(String answerText) {
-		label4.setText(answerText);
+		ansLabel.setText(answerText);
+	}
+	
+	public void displayHint(String hintText) {
+		label4.setText(hintText);
 	}
 	
 	public void displayScore(String scoreText) {
 		scoreLabel.setText(scoreText);
+	}
+
+
+	public void clearInput() {
+		inputField.setText(null);
 	}
 }
