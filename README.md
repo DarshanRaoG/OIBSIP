@@ -32,8 +32,8 @@
 
   * OUTPUT:
     <p align="center">
-      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output1.JPG" width="50%" >
-      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output2.jpeg" width="50%" >
-      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output3.JPG" width="50%" >
-      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output4.JPG" width="50%" >
+      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output1.JPG" width="45%" >
+      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output2.jpeg" width="45%" ><br><br>
+      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output3.JPG" width="45%" >
+      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/NumberGuessingGame/output4.JPG" width="45%" >
     </p>
