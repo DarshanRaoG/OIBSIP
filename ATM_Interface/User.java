@@ -1,4 +1,3 @@
-package automatedTellerMachine;
 
 public class User {
     private int uid;
