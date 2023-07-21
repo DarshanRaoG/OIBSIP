@@ -1,4 +1,3 @@
-package automatedTellerMachine;
 import java.util.*;
 
 public class Transaction {
