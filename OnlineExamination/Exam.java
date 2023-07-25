@@ -61,7 +61,7 @@ public class Exam {
 		
 		//Login Panel
 		loginPanel = new JPanel(new GridLayout(4,1));
-		imgLabel = new JLabel(new ImageIcon("man.png"));
+		imgLabel = new JLabel(new ImageIcon("C:\\Users\\dell\\Desktop\\man.PNG"));
 		loginPanel.setBackground(new Color(176, 224, 230));
 		
 		JPanel welcPanel = new JPanel();
@@ -225,7 +225,11 @@ public class Exam {
 		
 		startButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	resetQuestions();
+		    	if(currentQIndex != 0)
+		    	{
+		    		resetQuestions();
+		    		currentQIndex = 0;
+		    	}
 		    	for (int i=0;i<10;i++) {
 			        for (int j=0;j<4;j++) {
 			            mcq[i][j].setSelected(false);
@@ -316,7 +320,13 @@ public class Exam {
 
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resetQuestions();
+				if(currentQIndex != 0)
+				{
+					if(currentQIndex == 10)
+						currentQIndex--;
+					resetQuestions();
+					currentQIndex = 0;
+				}
 				clearTexts();
 				cardLayout.show(mainPanel, "LOGIN");
 			}
@@ -362,7 +372,14 @@ public class Exam {
         
         if(timeString.equals("00:00:00"))
         {
-        	cardLayout.show(mainPanel, "SCORE");
+        	
+			submitButton.setText("Submit");
+			submitButton.setBackground(Color.green);
+			scoreLabel.setText("Your score: "+score+"/100");
+			resetQuestions();
+        	currentQIndex = 0;
+			score = 0;
+			cardLayout.show(mainPanel, "SCORE");
         }
 	}
 	
@@ -370,7 +387,7 @@ public class Exam {
 		questionPanel.remove(innerQPanel);
 		questionPanel.remove(innerInQPanel);
 		questionPanel.remove(innerSubPanel);
-		innerQPanel.remove(q[9]);
+		innerQPanel.remove(q[currentQIndex]);
 		
 		for (int i=0;i<10;i++) {
 	        for (int j=0;j<4;j++) {
@@ -380,7 +397,7 @@ public class Exam {
 		
 		for(int j=0;j<4;j++)
 		{
-			innerQMPanel.remove(mcq[9][j]);
+			innerQMPanel.remove(mcq[currentQIndex][j]);
 		}
 		
 		questionPanel.remove(innerQPanel);
@@ -615,7 +632,6 @@ public class Exam {
 		currentQIndex++;
 		if(currentQIndex >= 10)
 		{
-			currentQIndex = 0;
 			submitButton.setText("Submit");
 			submitButton.setBackground(Color.green);
 			scoreLabel.setText("Your score: "+score+"/100");
