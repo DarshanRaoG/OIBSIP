@@ -62,7 +62,7 @@ public class Exam {
 		
 		//Login Panel
 		loginPanel = new JPanel(new GridLayout(4,1));
-		imgLabel = new JLabel(new ImageIcon("man.PNG"));
+		imgLabel = new JLabel(new ImageIcon("man.png"));
 		loginPanel.setBackground(new Color(176, 224, 230));
 		
 		JPanel welcPanel = new JPanel();
