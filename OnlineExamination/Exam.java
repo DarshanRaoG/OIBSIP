@@ -1,4 +1,3 @@
-package onlineExamination;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
