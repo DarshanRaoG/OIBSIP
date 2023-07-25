@@ -1,4 +1,3 @@
-package numberGuessingGame;
 
 public class Model {
 	private int randomNum;
