@@ -10,11 +10,12 @@
     * Quit
   * OUTPUT:
      <p align="center">
-      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output1.JPG" width="45%" height="475px" style="border: 3px solid black;">
-      <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output2.JPG" width="45%" height="475px" style="border: 3px solid black;"><br><br>
-       <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output3.JPG" width="45%" height="475px" style="border: 3px solid black;">
-       <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output4.JPG" width="45%" height="475px" style="border: 3px solid black;"><br><br>
-       <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output5.JPG" width="45%" height="475px" style="border: 3px solid black;">
+      <table>
+        <tr><td><img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output1.JPG" width="100%" height="475px" ></td>
+      <td><img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output2.JPG"  height="475px" ></td></tr>
+     <tr> <td> <img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output3.JPG"  height="475px"></td>
+       <td><img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output4.JPG" width="100%" height="475px"></td></tr>
+       <tr><td><img src="https://github.com/DarshanRaoG/OIBSIP/blob/main/ATM_Interface/output5.JPG" width="100%"  height="475px"></td></tr></table>
     </p>
   #
   # 2. Number Guessing Game - GUI based Game (OIBSIP_TaskNo2)
