@@ -1,4 +1,3 @@
-package numberGuessingGame;
 
 import javax.swing.SwingUtilities;
 
